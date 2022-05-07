@@ -23,7 +23,7 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot(),
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname),
+                rootPath: (0, path_1.join)(__dirname, '..'),
             }),
             typeorm_1.TypeOrmModule.forRootAsync({
                 useFactory: () => ({
