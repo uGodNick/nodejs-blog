@@ -26,9 +26,9 @@ export class BlogController {
     this.blogService.create(dto);
   }
 
-  @Get(':id')
-  async get(@Param('id') id: number) {
-    return this.blogService.getById(id);
+  @Get('last')
+  async get() {
+    return this.blogService.getLast();
   }
 
   @UseGuards(JwtAuthGuard)

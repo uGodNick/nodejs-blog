@@ -15,8 +15,8 @@ export class BlogService {
     this.blogRepository.save(dto);
   }
 
-  async getById(id: number): Promise<BlogModel> {
-    return this.blogRepository.findOne(id);
+  async getLast(): Promise<BlogModel> {
+    return this.blogRepository.findOne({ order: { id: 'DESC' } });
   }
 
   async deleteById(id: number): Promise<void> {
@@ -24,10 +24,8 @@ export class BlogService {
   }
 
   async save(dto: BlogModel): Promise<void> {
-    const blogToUpdate = await this.getById(dto.id);
+    const blogToUpdate = await this.blogRepository.findOne(dto.id);
 
-    blogToUpdate.authorEmail = dto.authorEmail;
-    blogToUpdate.createdDateUtc = dto.createdDateUtc;
     blogToUpdate.message = dto.message;
 
     await this.blogRepository.save(blogToUpdate);

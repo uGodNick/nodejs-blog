@@ -31,10 +31,6 @@ export class AuthService {
       email: email,
     });
 
-    if (!user) {
-      throw new UnauthorizedException(USER_NOT_FOUND_ERROR);
-    }
-
     return user;
   }
 
@@ -45,6 +41,9 @@ export class AuthService {
     const user = await this.findUser(email);
     const isCorrectPassword = await compare(password, user.passwordHash);
 
+    if (!user) {
+      throw new UnauthorizedException(USER_NOT_FOUND_ERROR);
+    }
     if (!isCorrectPassword) {
       throw new UnauthorizedException(WRONG_PASSWORD_ERROR);
     }
