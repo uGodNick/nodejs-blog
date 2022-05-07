@@ -12,7 +12,7 @@ import { join } from 'path';
   imports: [
     ConfigModule.forRoot(),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..'),
+      rootPath: join(__dirname),
     }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
